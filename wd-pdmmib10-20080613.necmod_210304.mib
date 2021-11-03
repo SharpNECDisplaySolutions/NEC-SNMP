@@ -1,0 +1,2975 @@
+PWG-PROJECTOR-DISPLAY-TC DEFINITIONS ::= BEGIN
+--  PWG Projector and Display Textual Conventions - Registry
+
+IMPORTS
+    MODULE-IDENTITY, enterprises
+        FROM SNMPv2-SMI                 -- RFC 2578
+    TEXTUAL-CONVENTION, DisplayString
+        FROM SNMPv2-TC;                 -- RFC 2579
+
+projectorDisplayTC MODULE-IDENTITY
+    LAST-UPDATED    "200806120000Z" -- 12 June 2008
+    ORGANIZATION    "Printer Working Group, a Program of IEEE/ISTO"
+    CONTACT-INFO
+        "Projector and Display Management (PDM) Working Group
+
+        Web:    http://www.pwg.org
+        FTP:    ftp://ftp.pwg.org/pub/pwg/pdm
+        Email:  pdm@pwg.org (subscribers only - see Web page above)
+
+        Editor: Richard Landau
+        Email:  Richard_Landau@dell.com
+
+        Editor: Ira McDonald
+        Email:  blueroofmusic@gmail.com"
+    DESCRIPTION
+        "The MIB module for projectors and display textual
+      conventions (i.e., enumerations and other refined
+      datatypes).  Note:  This module is a PWG Registry that can
+      be updated and approved independently of new versions of the
+      PWG Projector and Display MIB.  Copyright (C) IEEE/ISTO PWG
+      (2008)."
+
+    -- revision history
+    REVISION    "200806120000Z" -- 12 June 2008
+    DESCRIPTION
+        "PWG Projector and Display TC v1 - Working Draft * Added
+      PdmLocalizedStringTC for all localized UTF-8 strings, per
+      IETF best practice (see Printer MIB v2, RFC 3805). * Added
+      'other' and 'unknown' to all enumerations, per IETF best
+      practice."
+
+    ::= { enterprises pwg(2699) mibs(1) projectorDisplayTC(998) }
+
+--  PWG Secretary - MIB module number should be assigned/registered
+
+PdmLocalizedStringTC ::= TEXTUAL-CONVENTION
+    STATUS      current
+    DESCRIPTION
+        "An object MUST use this TEXTUAL-CONVENTION when it contains
+      a human-readable UTF-8 (RFC 3629) string in the locale
+      specified by pdmGeneralLanguageTagSNMP."
+    SYNTAX      OCTET STRING (SIZE(0..255))
+
+PdmDateTimeTC ::= TEXTUAL-CONVENTION
+    STATUS      current
+    DESCRIPTION
+        "An object MUST use this TEXTUAL-CONVENTION when it contains
+      a date-time string in the following format.  The string
+      shall be in an XML standard datetime format.   The following
+      formats are acceptable.  Which format a device uses depends
+      on the device's awareness of  its timezone.  
+      2007-07-26T17:05:12 for time probably in the local tz
+      2007-07-26T17:05:12Z for GMT (UTC) 2007-07-26T17:05:12-05:00
+      for local time in a specific tz"
+    SYNTAX      OCTET STRING (SIZE(19..25))
+
+-- #include mib/skeleton-groupsenums.txt
+
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmCtlrFirmwareUpgradeableTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmCtlrFirmwareUpgradeable."
+    SYNTAX INTEGER {
+      unknown(2),
+      notUpgradeable(3),
+      vendorDepotUpgradeable(4),
+      vendorProprietaryUpgrade(5),
+      userHardwareUpgradeable(6),
+      userTftpUpgradeable(7),
+      userFtpUpgradeable(8),
+      userHttpUpgradeable(9),
+      upgradedWithSystemCtlrFW(10)
+    }
+    
+PdmCtlrPostStatusTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmCtlrPostStatus."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      noError(3),
+      success(4),
+      hardwareExceptionThrown(5),
+      softwareExceptionThrown(6),
+      firmwareChecksumFailed(7),
+      memoryTestFailed(8),
+      configurationChecksumFailed(9),
+      batteryFailure(10),
+      internalCommunicationFailed(11)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmPowerCurrentStateTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmPowerCurrentState."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      activeOff(6),
+      standby(7),
+      powerSave(8),
+      cooling(9),
+      warming(10),
+      on(11)
+    }
+    
+PdmPowerRequestedStateTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmPowerRequestedState."
+    SYNTAX INTEGER {
+      deepSleep(5),
+      activeOff(6),
+      standby(7),
+      powerSave(8),
+      on(11)
+    }
+    
+PdmPowerImplementedStateTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmPowerImplementedState."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      activeOff(6),
+      standby(7),
+      powerSave(8),
+      cooling(9),
+      warming(10),
+      on(11)
+    }
+    
+PdmPowerTargetStateTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmPowerTargetState."
+    SYNTAX INTEGER {
+      noTransition(3),
+      deepSleep(5),
+      activeOff(6),
+      standby(7),
+      powerSave(8),
+      on(11)
+    }
+    
+PdmPowerCommAvailableTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmPowerCommAvailable."
+    SYNTAX INTEGER {
+      available(3),
+      notAvailable(4)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmDisplaySetVideoMuteTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmDisplaySetVideoMute."
+    SYNTAX INTEGER {
+      muted(1),
+      notMuted(2)
+    }
+    
+PdmDisplaySetDisplayModeTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmDisplaySetDisplayMode."
+    SYNTAX INTEGER {
+	  normal(1),
+	  full(2),
+      wide(3),
+      zoom(4),
+      dynamic(6),
+      1to1(7)
+    }
+    
+PdmDisplaySetColorTempTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmDisplaySetColorTemp."
+    SYNTAX INTEGER {
+      unknown(2),
+      userDefined(3),
+      temp6300K(4),
+      temp7200K(5),
+      temp9300K(6)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmLightSourceStatusTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmLightSourceStatus."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      okay(3),
+      failed(4)
+    }
+    
+PdmLightSourceEcoSettingTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmLightSourceEcoSetting."
+    SYNTAX INTEGER {
+      other(1),
+      high(3),
+      normal(4),
+      low(5)
+    }
+    
+PdmLightSourceResetTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmLightSourceReset."
+    SYNTAX INTEGER {
+      idle(1),
+      inProgress(2),
+      resetFRU(3),
+      resetCountersOnly(4)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmFanStatusTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmFanStatus."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      okay(3),
+      warning(4),
+      tooFastFail(5),
+      tooSlowFail(6),
+      slowStartWarning(7)
+    }
+    
+PdmFanResetTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmFanReset."
+    SYNTAX INTEGER {
+      idle(1),
+      inProgress(2),
+      resetFRU(3),
+      resetCountersOnly(4)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmFilterStatusTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmFilterStatus."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      okay(3),
+      warning(4),
+      fail(5)
+    }
+    
+PdmFilterResetTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmFilterReset."
+    SYNTAX INTEGER {
+      idle(1),
+      inProgress(2),
+      resetFRU(3),
+      resetCountersOnly(4)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmTempSensorStatusTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmTempSensorStatus."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      okay(3),
+      warning(4),
+      hiTempLimitFail(5),
+      lowTempLimitFail(6)
+    }
+    
+PdmTempSensorResetTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmTempSensorReset."
+    SYNTAX INTEGER {
+      idle(1),
+      inProgress(2),
+      resetFRU(3),
+      resetCountersOnly(4)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmTempSwitchStatusTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmTempSwitchStatus."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      okay(3),
+      fail(5)
+    }
+    
+PdmTempSwitchResetTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmTempSwitchReset."
+    SYNTAX INTEGER {
+      idle(1),
+      inProgress(2),
+      resetFRU(3),
+      resetCountersOnly(4)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmConnectorTypeTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmConnectorType."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      vga(3),
+      dviD(4),
+      dviI(5),
+      hdmi(6),
+      componentVideoBNC5(7),
+      componentVideoBNC3(8),
+      displayPort(9),
+      sVideo(10),
+      rj45(11),
+      wirelessWiFi(12),
+      rcaPlugVideo3(13),
+      rcaPlugAudio(14),
+      minijack2dot5mmAudio(15),
+      minijack3dot5mmAudio(16),
+      coaxAudio(17),
+      fibreAudio(18),
+      memoryCard(19),
+      usbMemory(20)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmInterlockStatusTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmInterlockStatus."
+    SYNTAX INTEGER {
+      unknown(2),
+      okClosed(3),
+      notOkOpen(4)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmAudioMuteTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmAudioMute."
+    SYNTAX INTEGER {
+      muted(1),
+      notMuted(2)
+    }
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+    -- Processed by enumtc07.xsl at    .  .  . 
+    
+PdmAlertSeverityLevelTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmAlertSeverityLevel."
+    SYNTAX INTEGER {
+      other(1),
+      critical(3),
+      warning(4)
+    }
+    
+PdmAlertTrainingLevelTC ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION 
+        "TC for enumerated property pdmAlertTrainingLevel."
+    SYNTAX INTEGER {
+      other(1),
+      unknown(2),
+      untrained(3),
+      trained(4),
+      fieldService(5),
+      management(6)
+    }
+    
+END
+
+PWG-PROJECTOR-DISPLAY-MIB DEFINITIONS ::= BEGIN
+--  PWG Projector and Display MIB
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-IDENTITY, OBJECT-TYPE, NOTIFICATION-TYPE,
+    Integer32, Counter32, Gauge32, TimeTicks, enterprises
+        FROM SNMPv2-SMI                 -- RFC 2578
+    TruthValue
+        FROM SNMPv2-TC                  -- RFC 2579
+    MODULE-COMPLIANCE, OBJECT-GROUP, NOTIFICATION-GROUP
+        FROM SNMPv2-CONF                -- RFC 2580
+    SnmpAdminString
+        FROM SNMP-FRAMEWORK-MIB         -- RFC 3411
+
+-- #include(getimports) mib/skeleton-getimports.txt
+    PdmLocalizedStringTC, PdmDateTimeTC,
+    PdmCtlrFirmwareUpgradeableTC, PdmCtlrPostStatusTC,
+    PdmPowerCurrentStateTC, PdmPowerRequestedStateTC,
+    PdmPowerImplementedStateTC, PdmPowerTargetStateTC,
+    PdmPowerCommAvailableTC, PdmDisplaySetVideoMuteTC,
+    PdmDisplaySetDisplayModeTC, PdmDisplaySetColorTempTC,
+    PdmLightSourceStatusTC, PdmLightSourceEcoSettingTC,
+    PdmLightSourceResetTC, PdmFanStatusTC,
+    PdmFanResetTC, PdmFilterStatusTC,
+    PdmFilterResetTC, PdmTempSensorStatusTC,
+    PdmTempSensorResetTC, PdmTempSwitchStatusTC,
+    PdmTempSwitchResetTC, PdmConnectorTypeTC,
+    PdmInterlockStatusTC, PdmAudioMuteTC,
+    PdmAlertSeverityLevelTC, PdmAlertTrainingLevelTC
+        FROM PWG-PROJECTOR-DISPLAY-TC;
+
+projectorDisplayMIB MODULE-IDENTITY
+    LAST-UPDATED    "200806120000Z" -- 12 June 2008
+    ORGANIZATION    "Printer Working Group, a Program of IEEE/ISTO"
+    CONTACT-INFO
+        "Projector and Display Management (PDM) Working Group
+
+        Web:    http://www.pwg.org
+        FTP:    ftp://ftp.pwg.org/pub/pwg/pdm
+        Email:  pdm@pwg.org (subscribers only - see Web page above)
+
+        Editor: Richard Landau
+        Postal: Dell
+                One Dell Way, RR5-3, MS RR5-09
+                Round Rock, TX  78682
+                USA
+        Tel:    +1 512-728-9023
+        Email:  Richard_Landau@dell.com
+
+        Editor: Ira McDonald
+        Postal: High North Inc
+                PO Box 221 - E21761 Ridge Ave
+                Grand Marais, MI  49839
+                USA
+        Tel:    +1 906-494-2434 or 906-494-2697
+        Email:  blueroofmusic@gmail.com"
+    DESCRIPTION
+        "The MIB module for passive monitoring and active management
+      of network connected projectors and displays:  state,
+      availability, counters, supplies, and alerts.  Copyright (C)
+      IEEE/ISTO PWG (2007)."
+
+    -- revision history
+    REVISION    "200806120000Z" -- 12 June 2008
+    DESCRIPTION
+        "PWG Projector and Display MIB v1 - Working Draft * Added
+      DEFVAL for all objects (except index objects), per IETF MIB
+      Guidelines (RFC 4181). * Revised datatype suffix (e.g.,
+      'URI') to object names, per IETF best practice."
+
+    ::= { enterprises pwg(2699) mibs(1) projectorDisplayMIB(4) }
+
+--  PWG Secretary - MIB module number should be assigned/registered
+
+pdmMIBNotifications      OBJECT IDENTIFIER ::= { projectorDisplayMIB 0 }
+
+pdmMIBObjects            OBJECT IDENTIFIER ::= { projectorDisplayMIB 1 }
+
+pdmMIBConformance        OBJECT IDENTIFIER ::= { projectorDisplayMIB 2 }
+
+pdmMIBObjectGroups       OBJECT IDENTIFIER ::= { pdmMIBConformance 2 }
+
+pdmMIBNotificationGroups OBJECT IDENTIFIER ::= { pdmMIBConformance 3 }
+
+--
+--  Projector and Display Device Types (for Host Resources MIB)
+--
+
+pdmDeviceTypes OBJECT IDENTIFIER ::= { pdmMIBObjects 1 }
+
+pdmDeviceProjector OBJECT-IDENTITY
+    STATUS      current
+    DESCRIPTION
+        "The device type identifier to be used for a projector in
+      hrDeviceType in the Host Resources MIB (RFC 2790)."
+    ::= { pdmDeviceTypes 1 }
+
+pdmDeviceDisplay OBJECT-IDENTITY
+    STATUS      current
+    DESCRIPTION
+        "The device type identifier to be used for a display in
+      hrDeviceType in the Host Resources MIB (RFC 2790)."
+    ::= { pdmDeviceTypes 2 }
+
+--
+--  General Group
+--
+
+-- #include mib/skeleton-groupstablesprops.txt
+
+    -- Processed by tables13.xsl at . . . 
+
+pdmGeneral OBJECT IDENTIFIER ::= { pdmMIBObjects 2 }  
+
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmGeneralProductName OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "A product name string supplied by the manufacturer, to
+      supplement the string in sysDescr. Should contain at least
+      the manufacturer name and model name.
+      NEC -- (255 bytes) returns NEC/modelname."
+    DEFVAL { "" }
+    ::= { pdmGeneral 1 }
+  
+pdmGeneralSerialNumber OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's unique serial number assigned to this
+      unit.
+      NEC -- (255 bytes)"
+    DEFVAL { "" }
+    ::= { pdmGeneral 2 }
+  
+pdmGeneralAssetTag OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 63 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "A user-writable string that may be used for asset
+      management.
+      NEC -- (63 bytes) Returns the user set Asset Tag or null 
+      if asset tag is not set.  Set the asset tag to an ASCII string."
+    DEFVAL { "" }
+    ::= { pdmGeneral 3 }
+  
+pdmGeneralHardwareVersion OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Revision identifier of the hardware overall. This may be the
+      same as the version number of the primary controller in the
+      controller table if there is no other version information
+      for the overall device.
+      NEC -- (255 bytes) always returns null."
+    DEFVAL { "" }
+    ::= { pdmGeneral 4 }
+  
+pdmGeneralServicePerson OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "A string where the device manager can record contact
+      information of the person responsible for servicing the
+      device.
+      NEC -- (255 bytes).  Returns the user set Service
+      information or null if nothing is set."
+    DEFVAL { "" }
+    ::= { pdmGeneral 5 }
+  
+pdmGeneralDeviceAge OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    UNITS "hours"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The amount of time the device has been turned on in its
+      lifetime. This counter begins at zero when the unit is
+      manufactured, increases with use, and is never reset. It is
+      recommended that the value be rounded up to the next nearest
+      unit. That is, the time should be rounded up to the next
+      hour when usage has passed the previous hour. Example: one
+      hour and one minute of usage should be reported as two
+      hours. The internal clocks used to maintain this value are
+      expected to be of higher resolution: fractions of an hour
+      should accumulate internally and not be lost.
+      NEC -- (4 bytes) Get the time of power on period in 30 minute 
+      intervals in a range of 0 - 65535."
+    ::= { pdmGeneral 6 }
+  
+pdmGeneralPowerOnCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    UNITS "hours"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The number of times the device has been powered up. This
+      value is incremented whenever the main controller of the
+      device is powered on. The value of this property is never
+      reset.
+      NEC -- (4 bytes) Range of 0 - 65535"
+    ::= { pdmGeneral 7 }
+  
+pdmGeneralManufactureDate OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The date of manufacture of this unit, in the format
+      YYYYMMDD. Example 20070906 for Sept. 6, 2007. Note: all the
+      numeric strings are fixed length and include leading zeros
+      where necessary. 
+      NEC -- unsupported."
+    DEFVAL { "" }
+    ::= { pdmGeneral 8 }
+  
+pdmGeneralLanguageTagSNMP OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 63 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The current natural language tag (RFC 4646) for all
+      localized text strings in the SNMP machine-readable remote
+      management interface over any version of SNMP. The value of
+      this property shall be one of the values of Tag in the
+      LocaleLanguage table, if the LocaleLanguage group is
+      implemented. If the value of this property is an empty
+      string, then the language in this interface shall be US
+      English (en-US).
+      NEC -- (63 bytes) Set is unsupported."
+    DEFVAL { "en-US" }
+    ::= { pdmGeneral 9 }
+  
+pdmGeneralNtpServerAddress OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "User-supplied IP address or DNS address for a network time
+      service (NTS) server from which the device can obtain the
+      time of day. If this property is empty, the time service, if
+      it exists, shall be disabled.
+      NEC -- (255 bytes).  Returns the primary DNS address or 
+      000.000.000.000 if nothing is stored.  Set the DNS primary address."
+    DEFVAL { "" }
+    ::= { pdmGeneral 10 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmCtlr OBJECT IDENTIFIER ::= { pdmMIBObjects 3 }  
+
+pdmCtlrTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmCtlrEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "Contains properties of all controllers."
+    ::= { pdmCtlr 1  }
+    
+pdmCtlrEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmCtlrEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmCtlrIndex }
+    ::= { pdmCtlrTable  1 }
+
+PdmCtlrEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmCtlrIndex   Integer32,
+      pdmCtlrDescription    PdmLocalizedStringTC,
+      pdmCtlrHardwareVersion    PdmLocalizedStringTC,
+      pdmCtlrFirmwareVersion    PdmLocalizedStringTC,
+      pdmCtlrFirmwareUpgradeable    PdmCtlrFirmwareUpgradeableTC,
+      pdmCtlrUpgradeInstructions    SnmpAdminString ,
+      pdmCtlrPostStatus    PdmCtlrPostStatusTC,
+      pdmCtlrPostCode    Integer32,
+      pdmCtlrPostStatusDefinitions    SnmpAdminString 
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+    -- table at { pdmCtlr 1 }
+pdmCtlrIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmCtlrEntry 1 }
+
+pdmCtlrDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Manufacturer's description of each controller. This value
+      will be used in the Alerts table and anyplace where a
+      specific controller needs to be identified.
+      NEC -- (255 bytes) Always returns null."
+    DEFVAL { "" }
+    ::= { pdmCtlrEntry 2 }
+  
+pdmCtlrHardwareVersion OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Revision identifier of the sub-controller hardware. 
+      NEC -- (255 bytes) Always returns null."
+    DEFVAL { "" }
+    ::= { pdmCtlrEntry 3 }
+  
+pdmCtlrFirmwareVersion OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Firmware version for the sub-controller. It is recommended
+      that version numbers follow the DMTF convention (in ABNF):
+      version-string = major-version-number '.'
+      minor-version-number '.' patch-number *1(edit-letter) for
+      example, 1.2.3e is major version 1, minor version 2, patch
+      level 3, the fifth edit since publication. 
+      NEC -- (255 bytes) Always returns null."
+    DEFVAL { "" }
+    ::= { pdmCtlrEntry 4 }
+  
+pdmCtlrFirmwareUpgradeable OBJECT-TYPE
+    SYNTAX PdmCtlrFirmwareUpgradeableTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "NEC -- (4 bytes) Always return 2 (unknown)."
+    DEFVAL { unknown }
+    ::= { pdmCtlrEntry 5 }
+  
+pdmCtlrUpgradeInstructions OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- URL: USASCII, extensible to UTF-8 in future
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "URL containing device specific instructions for upgrading
+      the firmware of the system controllers. The URL may be local
+      (on localhost) or remote. The scheme of the URL shall
+      specify either http: or ftp:. 
+      NEC -- (255 bytes) Always return spaces.  Set is not supported."
+    DEFVAL { ''H }
+    ::= { pdmCtlrEntry 6 }
+  
+pdmCtlrPostStatus OBJECT-TYPE
+    SYNTAX PdmCtlrPostStatusTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Return code from the last Power-On Self Test (POST),
+      classified by category. 
+      NEC -- (4 bytes) Always return 2 (unknown)."
+    DEFVAL { unknown }
+    ::= { pdmCtlrEntry 7 }
+  
+pdmCtlrPostCode OBJECT-TYPE
+    SYNTAX Integer32 ( -2147483648 .. 2147483647 )  -- Integer
+    UNITS "n/a"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The raw 32-bit return status code from the last POST.
+      NEC -- (4 bytes) Always return 0."
+    DEFVAL { ''H }
+    ::= { pdmCtlrEntry 8 }
+  
+pdmCtlrPostStatusDefinitions OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- URL: USASCII, extensible to UTF-8 in future
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "URL to a document containing a list of POST codes used by
+      the device. The document should include for each error a
+      description of the error and possible or recomended steps to
+      resolve the problem. The URL may be local (on localhost) or
+      remote. The scheme of the URL shall specify either http: or
+      ftp:. 
+      NEC -- (255 bytes)  Always return spaces."
+    DEFVAL { ''H }
+    ::= { pdmCtlrEntry 9 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmPower OBJECT IDENTIFIER ::= { pdmMIBObjects 4 }  
+
+pdmPowerTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmPowerEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "This table lists the different power state values available
+      in this device. There should be an entry in this table for
+      each possible value of CurrentState from which a transition
+      can be requested. The table lists the different transitions
+      possible from one power state to another. An implemented
+      state can have more than one entry. That is, there can be
+      multiple rows with the same initial ImplementedState, e.g.,
+      entries for 'activeOff' to 'deepSleep'; 'activeOff' to
+      'standby'; 'activeOff' to 'on'; 'deepSleep' to 'on'; 'acOff'
+      to 'noTransition'. Each implemented state must have at least
+      one entry. Even if the ImplementedState has no operational
+      transition (e.g., acOff, which cannot be transitioned from
+      via management software), it must have one entry with
+      information describing that fact, i.e., TargetState would
+      contain 'noTransition', meaning that the software cannot
+      change the state."
+    ::= { pdmPower 1  }
+    
+pdmPowerEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmPowerEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmPowerIndex }
+    ::= { pdmPowerTable  1 }
+
+PdmPowerEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmPowerIndex   Integer32,
+      pdmPowerImplementedState    PdmPowerImplementedStateTC,
+      pdmPowerDescription    PdmLocalizedStringTC,
+      pdmPowerMfrDescription    PdmLocalizedStringTC,
+      pdmPowerTargetState    PdmPowerTargetStateTC,
+      pdmPowerTransitionTime    Integer32,
+      pdmPowerCommAvailable    PdmPowerCommAvailableTC
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmPowerCurrentState OBJECT-TYPE
+    SYNTAX PdmPowerCurrentStateTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The power state of device. Values: Other - Some state not in
+      this list. Unknown - No data available to the agent. AC Off
+      - Hard switch; no power to device. (This cannot be reported
+      by the agent, of course.) Deep Sleep - Can be powered on
+      only via buttons or handheld remote power button. (Again,
+      this cannot be reported.) Active Off - Can turn on with
+      SNMP, serial command, buttons, or handheld remote. Standby -
+      Full management access and response. Power Save - Like
+      Standby, but with mechanicals running for fastest possible
+      power-on. Cooling - The device is transitioning from an on
+      state to an off state. Warming - The device is transitioning
+      from an off state to an on state. On - Power on, device
+      completely accessable.
+      NEC -- (4 bytes) Return power state as ON (11), activeOff (6) or Standby (7)."
+    DEFVAL { unknown }
+    ::= { pdmPower 2 }
+  
+pdmPowerRequestedState OBJECT-TYPE
+    SYNTAX PdmPowerRequestedStateTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "Writing a value into this property requests a change in the
+      power state of the device. When the transition is complete,
+      the value of CurrentState will change to match this value.
+      If the value written into RequestedState is not possible as
+      a transition from the CurrentState (as seen in the
+      PowerTable), then the requested change is ignored, and the
+      value of RequestedState should revert back to the
+      CurrentState. Reading the value of this property returns the
+      last successful requested state change, including changes
+      made using any mechanism: SNMP, serial command, button.
+      NEC -- (4 bytes) Return current power stats as ON (11),
+      activeOff (6) or Standby (7).  Set to change the power
+      status to 11 (ON) or 7(Standby) or 5 (DeepSleep)"
+    DEFVAL { on }
+    ::= { pdmPower 3 }
+  
+    -- table at { pdmPower 1 }
+pdmPowerIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmPowerEntry 1 }
+
+pdmPowerImplementedState OBJECT-TYPE
+    SYNTAX PdmPowerImplementedStateTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "A power state that is implemented in this device. These
+      values may be reported in the CurrentState property.
+      NEC -- (4 bytes) Return power state as ON (11), 
+      activeOff (6) or Standby (7)."
+    DEFVAL { unknown }
+    ::= { pdmPowerEntry 2 }
+  
+pdmPowerDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The string value is the manufacturer's description of the
+      power state of the associated enumeration value. E.g., for
+      the enumeration value of '3' ('Deep Sleep'), the brand
+      description might be 'Deep Sleep Mode, Remote Control Only'.
+      NEC -- (255 bytes) Return a description of the power state,
+      such as 'power on (11)', 'standby(LAN POWER ON)(7)' or
+      'power saving (6)'"
+    DEFVAL { "" }
+    ::= { pdmPowerEntry 3 }
+  
+pdmPowerMfrDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Extra information the manufacturer needs to present for use
+      in the user interface. This string, if present, should
+      beused in user interfaces in preference to the standard
+      translation of the enumerated value. 
+      NEC -- (255 bytes) Always return spaces."
+    DEFVAL { "" }
+    ::= { pdmPowerEntry 4 }
+  
+pdmPowerTargetState OBJECT-TYPE
+    SYNTAX PdmPowerTargetStateTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "A power state value that can be requested as a transition
+      from the ImplementedState (in this row); that is, a manager
+      may request a transition from the ImplementedState to the
+      TargetState by writing the value of ImplementedState into
+      the property RequestedState. The special value noTransition
+      is used to declare that no transition may be requested out
+      of the ImplementedState. 
+      NEC -- (4 bytes) If under power off processing, return 7 (standby), 
+      otherwise return 3 (no transition)"
+    DEFVAL { noTransition }
+    ::= { pdmPowerEntry 5 }
+  
+pdmPowerTransitionTime OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    UNITS "seconds"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The time (in seconds) it takes to transition from the
+      ImplementedState to the TargetState. A value of 0 means no
+      time, that is, the transition happens immediately. A value
+      of -2 indicates unknown, that is, the time is either
+      indeterminate or not known to the agent. 
+      NEC -- (4 bytes) Return OFF -> ON: 0[sec.], ON -> OFF: 3[sec.]."
+    DEFVAL { -2 }
+    ::= { pdmPowerEntry 6 }
+  
+pdmPowerCommAvailable OBJECT-TYPE
+    SYNTAX PdmPowerCommAvailableTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "This field reports whether or not the device will be capable
+      of communication during the transition from
+      Implemented(Initial) to Target values. Values: 3 =
+      available, that is, it should be possible to communicate
+      with the management agent during the period of the
+      transition; 4 = not possible. 
+      NEC -- (4 bytes) Always return 3 (available)"
+    DEFVAL { available }
+    ::= { pdmPowerEntry 7 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmDisplayCap OBJECT IDENTIFIER ::= { pdmMIBObjects 5 }  
+
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmDisplayCapResolutionH OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    UNITS "pixels"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "For displays and projectors, the Horizontal Resolution of
+      the image area in pixels. By convention, the device is
+      considered to be in landscape mode, and this measurement is
+      the pixel count of the horizontal, or longer, side of the
+      display rectangle.  
+      NEC -- (4 bytes) Return the horizontal resolution.  "
+    DEFVAL { ''H }
+    ::= { pdmDisplayCap 1 }
+  
+pdmDisplayCapResolutionV OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    UNITS "pixels"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "For displays and projectors, the Vertical Resolution of the
+      image area in pixels. By convention, the device is
+      considered to be in landscape mode, and this measurement is
+      the pixel count of the vertical, or shorter, side of the
+      display rectangle.  
+      NEC -- (4 bytes) Return the vertical resolution."
+    DEFVAL { ''H }
+    ::= { pdmDisplayCap 2 }
+  
+pdmDisplayCapPhysSizeH OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    UNITS "millimeter"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "For direct view displays, the Horizontal Physical Size of
+      the image area. By convention, the device is considered to
+      be in landscape mode, and this measurement is the length of
+      the horizontal, or longer, side of the display rectangle.
+      NEC -- (4 bytes) Return the horizontal physical size of the
+      panel."
+    DEFVAL { ''H }
+    ::= { pdmDisplayCap 3 }
+  
+pdmDisplayCapPhysSizeV OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    UNITS "millimeter"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "For direct view displays, the Vertical Physical Size of the
+      image area. By convention, the device is considered to be in
+      landscape mode, and this measurement is the length of the
+      vertical, or shorter, side of the display rectangle.
+      NEC -- (4 bytes) Return the vertical physical size of the panel."
+    DEFVAL { ''H }
+    ::= { pdmDisplayCap 4 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmDisplaySet OBJECT IDENTIFIER ::= { pdmMIBObjects 6 }  
+
+pdmDisplaySetTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmDisplaySetEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "The Display Capabilities Group Table. Some devices have
+      different image settings for different inputs, so use a
+      table for now until we sort this out."
+    ::= { pdmDisplaySet 1  }
+    
+pdmDisplaySetEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmDisplaySetEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmDisplaySetIndex }
+    ::= { pdmDisplaySetTable  1 }
+
+PdmDisplaySetEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmDisplaySetIndex   Integer32,
+      pdmDisplaySetAffectsAll    TruthValue,
+      pdmDisplaySetInputSource    Integer32,
+      pdmDisplaySetBrightness    Integer32,
+      pdmDisplaySetBrtMax    Integer32,
+      pdmDisplaySetContrast    Integer32,
+      pdmDisplaySetConMax    Integer32,
+      pdmDisplaySetRed    Integer32,
+      pdmDisplaySetGreen    Integer32,
+      pdmDisplaySetBlue    Integer32,
+      pdmDisplaySetRGBMax    Integer32,
+      pdmDisplaySetSaturation    Integer32,
+      pdmDisplaySetSatMax    Integer32,
+      pdmDisplaySetHue    Integer32,
+      pdmDisplaySetHueMax    Integer32,
+      pdmDisplaySetSharpness    Integer32,
+      pdmDisplaySetShpMax    Integer32,
+      pdmDisplaySetColorTemp    PdmDisplaySetColorTempTC,
+      pdmDisplaySetRedClrTmp    Integer32,
+      pdmDisplaySetGreenClrTmp    Integer32,
+      pdmDisplaySetBlueClrTmp    Integer32,
+      pdmDisplaySetClrTmpMax    Integer32
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmDisplaySetVideoMute OBJECT-TYPE
+    SYNTAX PdmDisplaySetVideoMuteTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property will blank out the image when set to muted.
+      NEC -- (4 bytes)  Always returns 0.  Set not supported."
+    DEFVAL { notMuted }
+    ::= { pdmDisplaySet 2 }
+  
+pdmDisplaySetDisplayMode OBJECT-TYPE
+    SYNTAX PdmDisplaySetDisplayModeTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "aka. DisplayScalingMode This property will report the
+      current display mode of the image. Pulled information from
+      the Aspect Ratio Table document (AspectRatioTable_v01.doc).
+      NEC (4 bytes) Gets the current display mode (aspect).
+	  Set the display mode (aspect):
+      1 (normal), 2 (full), 3 (wide), 4 (zoom), 6 (dynamic), 7 (1:1)"
+    DEFVAL { zoom }
+    ::= { pdmDisplaySet 3 }
+  
+    -- table at { pdmDisplaySet 1 }
+pdmDisplaySetIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmDisplaySetEntry 1 }
+
+pdmDisplaySetAffectsAll OBJECT-TYPE
+    SYNTAX TruthValue  -- Boolean, import from SMIv2-TC
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "This property denotes if the properties following it affect
+      the projector as a whole (all inputs), or just a specific
+      input. True for all inputs mode, false for specific inputs
+      mode. 
+      NEC -- (4 bytes)  Always return 0."
+    DEFVAL { true }
+    ::= { pdmDisplaySetEntry 2 }
+  
+pdmDisplaySetInputSource OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    UNITS "n/a"
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "Identifies the input connector that this row of the table
+      refers to. Some devices maintain different settings of
+      brightness, contrast, etc., for each input. The value of
+      this property must be the Index of the interface connector
+      to be affected by these settings. 
+      NEC -- (4 bytes) Get or Set current input source: VGA (RGB) (1), 
+      DVI (3), VGA (YPbPr) (12), OPTION (13), DisplayPort1 (15), 
+      DisplayPort2 (16), HDMI1 (17), HDMI2 (18), HDMI3 (130), MP (135), 
+      COMPUTE MODULE (136).  Note: Some are not available on a models."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 3 }
+  
+pdmDisplaySetBrightness OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the brightness of the image
+      displayed. Range is 0 to +valueof(BrtMax). The
+      interpretation of brightness for a particular display
+      technology is device-dependent, and may vary considerably
+      among various types of projectors, backlit LCD displays, and
+      emissive LED displays.
+      NEC -- (4 bytes).  Get or set current brightness. Value of 0-100."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 4 }
+  
+pdmDisplaySetBrtMax OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "This property would denote the maximum brightness value.
+      NEC -- (4 bytes) Value of 100."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 5 }
+  
+pdmDisplaySetContrast OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the contrast of the image
+      displayed. Range is 0 to +valueof(ConMax).
+      NEC -- (4 bytes) Get or Set contrast to a value of 0-100."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 6 }
+  
+pdmDisplaySetConMax OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "This property would control the contrast of the image
+      displayed.
+      NEC -- (4 bytes) get The contrast maximum value of 100."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 7 }
+  
+pdmDisplaySetRed OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the red intensity of the image
+      displayed. Range is 0 to +valueof(RGBMax). 
+      NEC -- unsupported."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 8 }
+  
+pdmDisplaySetGreen OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the green intensity of the image
+      displayed. Range is 0 to +valueof(RGBMax). 
+      NEC -- unsupported."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 9 }
+  
+pdmDisplaySetBlue OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The property would control the blue intensity of the image
+      displayed. Range is 0 to +valueof(RGBMax). 
+      NEC -- unsupported."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 10 }
+  
+pdmDisplaySetRGBMax OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The property would denote the maximum intensity value the
+      RGB values can reach. 
+      NEC -- unsupported."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 11 }
+  
+pdmDisplaySetSaturation OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the saturation (or color) of the
+      image displayed. Range is 0 to +valueof(SatMax).  
+      NEC -- (4 bytes) Get or Set the Saturation value of 0-100."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 12 }
+  
+pdmDisplaySetSatMax OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The property would denote the maximum intensity value
+      saturation can reach. The property must be implemented if
+      Saturation is implemented.  
+      NEC -- (4 bytes) Max value of 100."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 13 }
+  
+pdmDisplaySetHue OBJECT-TYPE
+    SYNTAX Integer32 ( -2147483648 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the tint/hue of the image
+      displayed. This property is zero-centered, ranging from
+      -HueMax to +HueMax.  
+      NEC -- (4 bytes) Get or Set the hue value of 0-100."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 14 }
+  
+pdmDisplaySetHueMax OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The property would denote the maximum intensity value the
+      RGB values can reach. Must be implemented if Hue property is
+      implemented. 
+      NEC -- (4 bytes) Max hue of 100."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 15 }
+  
+pdmDisplaySetSharpness OBJECT-TYPE
+    SYNTAX Integer32 ( -2147483648 ..  2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the sharpness of the image
+      displayed. This property is zero centered, ranging from
+      -ShpMax to ShpMax. 
+      NEC -- (4 bytes) Get or set sharpness value from 0 to Max."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 16 }
+  
+pdmDisplaySetShpMax OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The property would denote the maximum abs value sharpness
+      can reach. Must be implemented if sharpness is implemented.
+      NEC -- (4 bytes) Sharpness max value."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 17 }
+  
+pdmDisplaySetColorTemp OBJECT-TYPE
+    SYNTAX PdmDisplaySetColorTempTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property indicates the color temperature setup of the
+      display device. Several standard settings are available; if
+      a standard setting is used, then the RedClrTmp (and Blue and
+      Green) settings are ignored. These custom settings are used
+      only when ColorTemp is set to userDefined(3).
+      NEC -- (4 bytes) Get the color temperature setting.
+	  Set the color temperature setting: 2 (unknown 10000K), 3 (user defined)"
+    ::= { pdmDisplaySetEntry 18 }
+  
+pdmDisplaySetRedClrTmp OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the red color temp of the image
+      displayed. Would only be usable when projector is in Color
+      Temp 'User' mode. Range is 0 to +valueof(ClrTmpMax). 
+      NEC -- (4 bytes) Get current color temperature red value (0-255).
+      Set color temperature red value (0-255).  Note: this control
+      is valid if pdmDisplaySetColorTemp is set to 3 (user defined)."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 19 }
+  
+pdmDisplaySetGreenClrTmp OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the green color temp of the
+      image displayed. Would only be usable when projector is in
+      Color Temp 'User' mode. Range is 0 to +valueof(ClrTmpMax).
+      NEC -- (4 bytes) Get or setcurrent color temperature green 
+      value (0-255).  Note:  this control is valid if
+      pdmDisplaySetColorTemp is set to 3 (user defined)."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 20 }
+  
+pdmDisplaySetBlueClrTmp OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property would control the blue color temp of the image
+      displayed. Would only be usable when projector is in Color
+      Temp 'User' mode. Range is 0 to +valueof(ClrTmpMax).
+      NEC -- (4 bytes.  Get or set current color temperature blue
+      value (0-255).  Note:  This control is valid if
+      pdmDisplaySetColorTemp is set to 3 (user defined)."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 21 }
+  
+pdmDisplaySetClrTmpMax OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The property would denote the maximum value the rgb color
+      temp values can reach. Must be implemented if the rgb color
+      temp values are implemented.  
+      NEC -- (4 bytes.  Get current color temperature value (255).  
+      Note:  This control is valid if pdmDisplaySetColorTemp is set to 
+      3 (user defined)."
+    DEFVAL { 0 }
+    ::= { pdmDisplaySetEntry 22 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmLightSource OBJECT IDENTIFIER ::= { pdmMIBObjects 7 }  
+
+pdmLightSourceTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmLightSourceEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "The Lamp table contains one row for each lamp or bulb. A
+      device that contains one lamp will populate one row in this
+      table. A device with three lamps will populate three rows in
+      this table. It is possible for a device to have no active
+      lamps, for instance, a passive reflective array. In that
+      case, this table will be empty."
+    ::= { pdmLightSource 1  }
+    
+pdmLightSourceEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmLightSourceEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmLightSourceIndex }
+    ::= { pdmLightSourceTable  1 }
+
+PdmLightSourceEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmLightSourceIndex   Integer32,
+      pdmLightSourceDescription    PdmLocalizedStringTC,
+      pdmLightSourceStatus    PdmLightSourceStatusTC,
+      pdmLightSourceEcoSetting    PdmLightSourceEcoSettingTC,
+      pdmLightSourceAge    Counter32,
+      pdmLightSourceErrorCounter    Counter32,
+      pdmLightSourceReset    PdmLightSourceResetTC,
+      pdmLightSourceReplacementCount    Counter32,
+      pdmLightSourceReplacementTime    PdmDateTimeTC,
+      pdmLightSourceReplacemenInterval    Integer32,
+      pdmLightSourceReplacementPN    SnmpAdminString
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+    -- table at { pdmLightSource 1 }
+pdmLightSourceIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmLightSourceEntry 1 }
+
+pdmLightSourceDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Vendor supplied localized description for the light.
+      NEC -- (255 bytes) Always return spaces."
+    DEFVAL { "" }
+    ::= { pdmLightSourceEntry 2 }
+  
+pdmLightSourceStatus OBJECT-TYPE
+    SYNTAX PdmLightSourceStatusTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The status of lamp running.  
+      NEC -- (4 bytes) Get 4 (failed), if the device encounters 'Inverter abnormality'.
+      Otherwise, get 3 (okay)."
+    DEFVAL { unknown }
+    ::= { pdmLightSourceEntry 3 }
+  
+pdmLightSourceEcoSetting OBJECT-TYPE
+    SYNTAX PdmLightSourceEcoSettingTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The Brightness Setting of lamp: normal, bright, or low
+      (eco-mode). 
+      NEC -- (4 bytes) Always get 1 (Other).  Set is unsupported."
+    DEFVAL { normal }
+    ::= { pdmLightSourceEntry 4 }
+  
+pdmLightSourceAge OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    UNITS "hours"
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The number of hours the lamp has been turned on since it was
+      last replaced. 
+      NEC -- (4 bytes)  Get the time of power on in 30 minute intervals 
+      in range of 0-65535.  Set is unsupported."
+    ::= { pdmLightSourceEntry 5 }
+  
+pdmLightSourceErrorCounter OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    UNITS "events"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Error Counter of the current lamp.  
+      NEC -- (4 bytes) Always get 0."
+    ::= { pdmLightSourceEntry 6 }
+  
+pdmLightSourceReset OBJECT-TYPE
+    SYNTAX PdmLightSourceResetTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "Provides a method to reset the FRU error counter as well as
+      the replacement part counter . If the value written is
+      resetCountersOnly(4), then the ErrorCounter property of this
+      unit will be reset to zero. If the value written is
+      resetFRU(3), then several properties will be changed
+      atomically to indicate unambiguously that the FRU has been
+      replaced. - The ErrorCounter property will be reset to zero.
+      - The Age property will be reset to zero. - The
+      ReplacementNumber property will be incremented. - The
+      ReplacementTime property will be set to the current value of
+      the system time-of-day clock (if available).  
+      NEC -- (4 bytes) Always get 4 (resetCountersonly).  Set is unsupported."
+    DEFVAL { idle }
+    ::= { pdmLightSourceEntry 7 }
+  
+pdmLightSourceReplacementCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The number of times that this unit has been replaced. This
+      counter is incremented when the Reset function is given the
+      value resetFRU(3). 
+      NEC -- (4 bytes) Always return 0."
+    ::= { pdmLightSourceEntry 8 }
+  
+pdmLightSourceReplacementTime OBJECT-TYPE
+    SYNTAX PdmDateTimeTC  --  absolute DateTime(SIZE( 19..25 ))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The time at which the FRU was last replaced. This property
+      is changed to the current date and time when the Reset
+      function is given the value resetFRU(3). 
+      NEC -- (19~25 bytes) Always return '1980-01-01T00:00:00'"
+    DEFVAL { "1980-01-01T00:00:00" }
+    ::= { pdmLightSourceEntry 9 }
+  
+pdmLightSourceReplacemenInterval OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's suggested maximum useful life expectancy
+      of this unit. When the unit reaches this age, the
+      manufacturer recommends that the unit be replaced. A value
+      of zero indicates that no interval has been declared.
+      NEC -- (4 bytes) Always return 0.  Set is unsupported."
+    DEFVAL { 0 }
+    ::= { pdmLightSourceEntry 10 }
+  
+pdmLightSourceReplacementPN OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's part number of a lamp.  
+      NEC -- (255 bytes) Always return spaces."
+    DEFVAL { "" }
+    ::= { pdmLightSourceEntry 11 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmFan OBJECT IDENTIFIER ::= { pdmMIBObjects 8 }  
+
+pdmFanTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmFanEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "Contains table data for fan properties."
+    ::= { pdmFan 1  }
+    
+pdmFanEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmFanEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmFanIndex }
+    ::= { pdmFanTable  1 }
+
+PdmFanEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmFanIndex   Integer32,
+      pdmFanDescription    SnmpAdminString,
+      pdmFanStatus    PdmFanStatusTC,
+      pdmFanSpeed    Gauge32,
+      pdmFanErrorCounter    Counter32,
+      pdmFanReset    PdmFanResetTC,
+      pdmFanReplacementCount    Counter32,
+      pdmFanReplacementTime    PdmDateTimeTC,
+      pdmFanReplacemenInterval    Integer32,
+      pdmFanReplacementPartNumber    SnmpAdminString
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+    -- table at { pdmFan 1 }
+pdmFanIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmFanEntry 1 }
+
+pdmFanDescription OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 1 .. 63 ))  -- String
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Vendor supplied name of the fan. 
+      NEC -- (1~63 bytes) Always return spaces."
+    DEFVAL { "" }
+    ::= { pdmFanEntry 2 }
+  
+pdmFanStatus OBJECT-TYPE
+    SYNTAX PdmFanStatusTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Decribes if there are fans contained in the display device
+      and the current status of the fan. The status is good,
+      warning and bad. 
+      NEC -- (4 bytes) Returns the current fan status.
+    DEFVAL { unknown }
+    ::= { pdmFanEntry 3 }
+  
+pdmFanSpeed OBJECT-TYPE
+    SYNTAX Gauge32 ( 0 .. 4294967295)  -- Gauge
+    UNITS "RPM"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Describes the speed of the fan in RPM. 
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { 0 }
+    ::= { pdmFanEntry 4 }
+  
+pdmFanErrorCounter OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Keeps persistent running total of fan failures. 
+      NEC -- (4 bytes) unsupported."
+    ::= { pdmFanEntry 5 }
+  
+pdmFanReset OBJECT-TYPE
+    SYNTAX PdmFanResetTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "Provides a method to reset the fan error counter as well as
+      the replacement part counter. If the value written is
+      resetCountersOnly(4), then the ErrorCounter property of this
+      unitwill be reset to zero. If the value written is
+      resetFRU(3), then several properties will be changed
+      atomically to indicate unambiguously that the FRU has been
+      replaced. - The ErrorCounter property will be reset to zero.
+      - The Age property will be reset to zero. - The
+      ReplacementNumber property will be incremented. - The
+      ReplacementTime property will be set to the current value of
+      the system time-of-day clock. 
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { idle }
+    ::= { pdmFanEntry 6 }
+  
+pdmFanReplacementCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The number of times that this fan unit has been replaced.
+      This counter is incremented when the Reset function is given
+      the value resetFRU(3). 
+      NEC -- (4 bytes) unsupported."
+    ::= { pdmFanEntry 7 }
+  
+pdmFanReplacementTime OBJECT-TYPE
+    SYNTAX PdmDateTimeTC  --  absolute DateTime(SIZE( 19..25 ))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The time at which the FRU was last replaced. This property
+      is changed to the current date and time when the Reset
+      function is given the value resetFRU(3). 
+      NEC -- (19~25 bytes) unsupported."
+    DEFVAL { "1980-01-01T00:00:00" }
+    ::= { pdmFanEntry 8 }
+  
+pdmFanReplacemenInterval OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's suggested maximum useful life expectancy
+      of this unit. When the unit reaches this age, the
+      manufacturer recommends that the unit be replaced. 
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { 0 }
+    ::= { pdmFanEntry 9 }
+  
+pdmFanReplacementPartNumber OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "Preferred part number of a replacement part for this unit.
+      This can be anything the user wants to record for the part.
+      NEC -- (255 bytes) unsupported."
+    DEFVAL { "" }
+    ::= { pdmFanEntry 10 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmFilter OBJECT IDENTIFIER ::= { pdmMIBObjects 9 }  
+
+pdmFilterTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmFilterEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "Contains table data for filter(s) age and change intervals."
+    ::= { pdmFilter 1  }
+    
+pdmFilterEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmFilterEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmFilterIndex }
+    ::= { pdmFilterTable  1 }
+
+PdmFilterEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmFilterIndex   Integer32,
+      pdmFilterDescription    SnmpAdminString,
+      pdmFilterStatus    PdmFilterStatusTC,
+      pdmFilterErrorCounter    Counter32,
+      pdmFilterReset    PdmFilterResetTC,
+      pdmFilterReplaceCount    Counter32,
+      pdmFilterReplaceTime    PdmDateTimeTC,
+      pdmFilterReplaceInterval    Integer32,
+      pdmFilterReplacePN    SnmpAdminString,
+      pdmFilterAirFlow    Gauge32
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+    -- table at { pdmFilter 1 }
+pdmFilterIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmFilterEntry 1 }
+
+pdmFilterDescription OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 63 ))  -- String
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Vendor supplied name. 
+      NEC -- (63 bytes) unsupported."
+    DEFVAL { "" }
+    ::= { pdmFilterEntry 2 }
+  
+pdmFilterStatus OBJECT-TYPE
+    SYNTAX PdmFilterStatusTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Provides information on the condition of the filters and
+      whether or not they need to be changed. 
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { unknown }
+    ::= { pdmFilterEntry 3 }
+  
+pdmFilterErrorCounter OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Keeps persistent running total of filter errors. It is reset
+      by the RESET property function. 
+      NEC -- (4 bytes) unsupported."
+    ::= { pdmFilterEntry 4 }
+  
+pdmFilterReset OBJECT-TYPE
+    SYNTAX PdmFilterResetTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "Provides a method to reset the filter error counter as well
+      as the replacement part counter. If the value written is
+      resetCountersOnly(4), then the ErrorCounter property of this
+      unit will be reset to zero. If the value written is
+      resetFRU(3), then several properties will be changed
+      atomically to indicate unambiguously that the FRU has been
+      replaced. - The ErrorCounter property will be reset to zero.
+      - The ReplacementNumber property will be incremented. - The
+      ReplacementTime property will be set to the current value of
+      the system time-of-day clock. 
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { idle }
+    ::= { pdmFilterEntry 5 }
+  
+pdmFilterReplaceCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The number of times that this filter unit has been replaced.
+      This counter is incremented when the Reset function is given
+      the value resetFRU(3). 
+      NEC -- (4 bytes) unsupported."
+    ::= { pdmFilterEntry 6 }
+  
+pdmFilterReplaceTime OBJECT-TYPE
+    SYNTAX PdmDateTimeTC  --  absolute DateTime(SIZE( 19..25 ))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The time at which the filter FRU was last replaced. This
+      property is changed to the current date and time when the
+      Reset function is given the value resetFRU(3). 
+      NEC -- (19~25 bytes) unsupported."
+    DEFVAL { "1980-01-01T00:00:00" }
+    ::= { pdmFilterEntry 7 }
+  
+pdmFilterReplaceInterval OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's suggested maximum useful life expectancy
+      of this unit if one exists. When the unit reaches this age,
+      the manufacturer recommends that the unit be replaced if it
+      is replaceable. 
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { 0 }
+    ::= { pdmFilterEntry 8 }
+  
+pdmFilterReplacePN OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's part number of a replacement part for
+      this unit. 
+      NEC -- (255 bytes) unsupported."
+    DEFVAL { "" }
+    ::= { pdmFilterEntry 9 }
+  
+pdmFilterAirFlow OBJECT-TYPE
+    SYNTAX Gauge32 ( 0 .. 100)  -- Gauge
+    UNITS "percent"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Defines the air flow condition for a filter. 
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { 100 }
+    ::= { pdmFilterEntry 10 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmTempSensor OBJECT IDENTIFIER ::= { pdmMIBObjects 10 }  
+
+pdmTempSensorTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmTempSensorEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "Contains status and failure data for the thermal sensors."
+    ::= { pdmTempSensor 1  }
+    
+pdmTempSensorEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmTempSensorEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmTempSensorIndex }
+    ::= { pdmTempSensorTable  1 }
+
+PdmTempSensorEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmTempSensorIndex   Integer32,
+      pdmTempSensorDescription    PdmLocalizedStringTC,
+      pdmTempSensorStatus    PdmTempSensorStatusTC,
+      pdmTempSensorTemp    Gauge32,
+      pdmTempSensorErrorCounter    Counter32,
+      pdmTempSensorReset    PdmTempSensorResetTC,
+      pdmTempSensorReplaceCount    Counter32,
+      pdmTempSensorReplaceTime    PdmDateTimeTC,
+      pdmTempSensorReplaceInterval    Integer32,
+      pdmTempSensorReplacePN    SnmpAdminString
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+    -- table at { pdmTempSensor 1 }
+pdmTempSensorIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmTempSensorEntry 1 }
+
+pdmTempSensorDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Describes what the sensor is measuring. 
+      NEC -- (255 bytes) unsupported."
+    DEFVAL { "" }
+    ::= { pdmTempSensorEntry 2 }
+  
+pdmTempSensorStatus OBJECT-TYPE
+    SYNTAX PdmTempSensorStatusTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Decribes if there are thermal sensors contained in the
+      display device and the current status of those sensors. The
+      status is other, unknown, okay, warning, good,
+      warning,hiTempLimitFail and lowTempLimitFail. 
+      NEC -- (4 bytes) Get current temperature status.  When backlight
+       down: 4 (warning), otherwise 3 (okay)."
+    DEFVAL { unknown }
+    ::= { pdmTempSensorEntry 3 }
+  
+pdmTempSensorTemp OBJECT-TYPE
+    SYNTAX Gauge32 ( 0 .. 10000 )  -- Gauge
+    UNITS "0.10 degree Celsius"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Describes the temperature being measured by the thermal
+      sensor in 10ths of a degree C. 
+      NEC -- (4 bytes) Return the SENSOR1 temperature to a scale 
+      of 0.1 degrees centigrade.  For example: 490 == 49.0"
+    DEFVAL { 0 }
+    ::= { pdmTempSensorEntry 4 }
+  
+pdmTempSensorErrorCounter OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Keeps persistent running total of thermal sensor errors. It
+      is reset by the RESET property function.  
+      NEC -- (4 bytes) unsupported."
+    ::= { pdmTempSensorEntry 5 }
+  
+pdmTempSensorReset OBJECT-TYPE
+    SYNTAX PdmTempSensorResetTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "Provides a method to reset the thermal sensor error counter
+      as well as the replacement part counter. If the value
+      written is resetCountersOnly(4), then the ErrorCounter
+      property of this unit will be reset to zero. If the value
+      written is resetFRU(3), then several properties will be
+      changed atomically to indicate unambiguously that the FRU
+      has been replaced. - The ErrorCounter property will be reset
+      to zero. - The ReplacementNumber property will be
+      incremented. - The ReplacementTime property will be set to
+      the current value of the system time-of-day clock.  
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { idle }
+    ::= { pdmTempSensorEntry 6 }
+  
+pdmTempSensorReplaceCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The number of times that this thermal sensor unit has been
+      replaced. This counter is incremented when the Reset
+      function is given the value resetFRU(3). 
+      NEC -- (4 bytes) unsupported."
+    ::= { pdmTempSensorEntry 7 }
+  
+pdmTempSensorReplaceTime OBJECT-TYPE
+    SYNTAX PdmDateTimeTC  --  absolute DateTime(SIZE( 19..25 ))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The time at which the FRU was last replaced. This property
+      is changed to the current date and time when the Reset
+      function is given the value resetFRU(3). 
+      NEC -- (19~25 bytes) unsupported."
+    DEFVAL { "1980-01-01T00:00:00" }
+    ::= { pdmTempSensorEntry 8 }
+  
+pdmTempSensorReplaceInterval OBJECT-TYPE
+    SYNTAX Integer32  -- IntegerConstant
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's suggested maximum useful life expectancy
+      of this unit if one exists. When the unit reaches this age,
+      the manufacturer recommends that the unit be replaced if it
+      is replaceable. 
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { 0 }
+    ::= { pdmTempSensorEntry 9 }
+  
+pdmTempSensorReplacePN OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's part number of a replacement part for
+      this unit. 
+      NEC (255 bytes) unsupported."
+    DEFVAL { "" }
+    ::= { pdmTempSensorEntry 10 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmTempSwitch OBJECT IDENTIFIER ::= { pdmMIBObjects 11 }  
+
+pdmTempSwitchTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmTempSwitchEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      ""
+    ::= { pdmTempSwitch 1  }
+    
+pdmTempSwitchEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmTempSwitchEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmTempSwitchIndex }
+    ::= { pdmTempSwitchTable  1 }
+
+PdmTempSwitchEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmTempSwitchIndex   Integer32,
+      pdmTempSwitchDescription    PdmLocalizedStringTC,
+      pdmTempSwitchStatus    PdmTempSwitchStatusTC,
+      pdmTempSwitchErrorCounter    Counter32,
+      pdmTempSwitchReset    PdmTempSwitchResetTC,
+      pdmTempSwitchReplaceCount    Counter32,
+      pdmTempSwitchReplaceTime    PdmDateTimeTC,
+      pdmTempSwitchReplacePN    SnmpAdminString
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+    -- table at { pdmTempSwitch 1 }
+pdmTempSwitchIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmTempSwitchEntry 1 }
+
+pdmTempSwitchDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Vendor supplied name of the thermal switch. 
+      NEC -- (255 bytes) unsupported."
+    DEFVAL { "" }
+    ::= { pdmTempSwitchEntry 2 }
+  
+pdmTempSwitchStatus OBJECT-TYPE
+    SYNTAX PdmTempSwitchStatusTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Decribes if there are thermal switch devices contained in
+      the display device and the current status of the switch(s).
+      The status is okay or fail.
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { unknown }
+    ::= { pdmTempSwitchEntry 3 }
+  
+pdmTempSwitchErrorCounter OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Keeps persistent running total of thermal switch failures.
+      NEC -- (4 bytes) unsupported."
+    ::= { pdmTempSwitchEntry 4 }
+  
+pdmTempSwitchReset OBJECT-TYPE
+    SYNTAX PdmTempSwitchResetTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "Provides a method to reset the thermal switch error counter
+      as well as the replacement part counter. If the value
+      written is resetCountersOnly(4), then the ErrorCounter
+      property of this unitwill be reset to zero. If the value
+      written is resetFRU(3), then several properties will be
+      changed atomically to indicate unambiguously that the FRU
+      has been replaced. - The ErrorCounter property will be reset
+      to zero. - The ReplacementNumber property will be
+      incremented. - The ReplacementTime property will be set to
+      the current value of the system time-of-day clock.
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { idle }
+    ::= { pdmTempSwitchEntry 5 }
+  
+pdmTempSwitchReplaceCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The number of times that this thermal switch unit has been
+      replaced. This counter is incremented when the Reset
+      function is given the value resetFRU(3).
+      NEC -- (4 bytes) unsupported."
+    ::= { pdmTempSwitchEntry 6 }
+  
+pdmTempSwitchReplaceTime OBJECT-TYPE
+    SYNTAX PdmDateTimeTC  --  absolute DateTime(SIZE( 19..25 ))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The time at which the FRU was last replaced. This property
+      is changed to the current date and time when the Reset
+      function is given the value resetFRU(3).
+      NEC -- (19~25 bytes) unsupported."
+    DEFVAL { "1980-01-01T00:00:00" }
+    ::= { pdmTempSwitchEntry 7 }
+  
+pdmTempSwitchReplacePN OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The manufacturer's part number of a replacement part for
+      this unit.
+      NEC -- (255 bytes) unsupported."
+    DEFVAL { "" }
+    ::= { pdmTempSwitchEntry 8 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmConnector OBJECT IDENTIFIER ::= { pdmMIBObjects 12 }  
+
+pdmConnectorTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmConnectorEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "The table SHALL contain one row per physical connector that
+      can be the source for a video or audio signal."
+    ::= { pdmConnector 1  }
+    
+pdmConnectorEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmConnectorEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmConnectorIndex }
+    ::= { pdmConnectorTable  1 }
+
+PdmConnectorEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmConnectorIndex   Integer32,
+      pdmConnectorDescription    PdmLocalizedStringTC,
+      pdmConnectorType    PdmConnectorTypeTC,
+      pdmConnectorEnabled    TruthValue,
+      pdmConnectorAudioAdjust    Integer32,
+      pdmConnectorVideoAdjust    Integer32
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmConnectorVideoCurrInput OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    UNITS "n/a"
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The Index of the interface connector from which the video
+      source is currently displayed.
+      NEC -- (4 bytes)  Get the current input source:
+      1 (VGA (RGB)), 3 (DVI), 12 (VGA (YPbPr)), 13 (Option),
+      15 (DisplayPort1), 16 (DisplayPort2, 17 (HDMI1), 
+      18 (HDMI2), 130 (HDMI3), 135 (MP), 136 (COMPUTE MODULE).
+      Set is unsupported."
+    DEFVAL { 0 }
+    ::= { pdmConnector 2 }
+  
+pdmConnectorAudioCurrInput OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    UNITS "n/a"
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The Index of the interface connector from which the current
+      audio source is played.
+      NEC -- (4 bytes)  Get the current audio input:
+      1 (IN1), 2 (IN2), 4 (HDMI1), 6 (OPTION), 7 (DisplayPort1), 
+      8 (DisplayPort2), 10 (HDMI2), 11 (HDMI3), 13 (MP), 14 
+      (COMPUTE MODULE).  Set is unsupported."
+    DEFVAL { 0 }
+    ::= { pdmConnector 3 }
+  
+    -- table at { pdmConnector 1 }
+pdmConnectorIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmConnectorEntry 1 }
+
+pdmConnectorDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "A localized description of the connector suitable for
+      presentation to the user, operator, or system manager.
+      NEC -- (255 bytes)  Get the following data: VGA (mini Dsub 15 pin),
+      DVI (DVI-D), HDMI (HDMI connector), DisplayPort (DisplayPort connector).
+      No explanation of audio connectors."
+    DEFVAL { "" }
+    ::= { pdmConnectorEntry 2 }
+  
+pdmConnectorType OBJECT-TYPE
+    SYNTAX PdmConnectorTypeTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "A value denoting the physical appearance of the connector.
+      This does not specify the protocol (or file organization,
+      etc.), used through the connector. Note that it is possible
+      to have more than one connector of a type. The presence and
+      description of any network-capable connectors here is still
+      under discussion.
+      NEC -- (4 bytes) Get the current input as: 4 (DVI(dviD)),
+      6 (HDMI), 9 (DisplayPort), 2 (unknown)"
+    DEFVAL { unknown }
+    ::= { pdmConnectorEntry 3 }
+  
+pdmConnectorEnabled OBJECT-TYPE
+    SYNTAX TruthValue  -- Boolean, import from SMIv2-TC
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "A bit specifying whether the device can receive a signal
+      through the connector. The connector can be enabled or
+      disabled administratively by the operator or system manager.
+      When a connector is disabled, the device should prevent
+      setting the XxxCurrentInputSource property to point to that
+      connector. Devices that implement a search pattern scanning
+      the available connectors for active signals should remove
+      disabled connectors from the search pattern.
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { true }
+    ::= { pdmConnectorEntry 4 }
+  
+pdmConnectorAudioAdjust OBJECT-TYPE
+    SYNTAX Integer32 ( -127 ..  127 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "A level control to be applied to the audio input signal on
+      this connector when the connector is the active input. This
+      property provides a range of adjustment for signal sources
+      that do not match the input level requirements of the
+      device.
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { 0 }
+    ::= { pdmConnectorEntry 5 }
+  
+pdmConnectorVideoAdjust OBJECT-TYPE
+    SYNTAX Integer32 ( -127 ..  127 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "A level control to be applied to the video input signal on
+      this connector when the connector is the active input. This
+      property provides a range of adjustment for signal sources
+      that do not match the input level requirements of the
+      device.
+      NEC -- (4 byte4s) unsupported."
+    DEFVAL { 0 }
+    ::= { pdmConnectorEntry 6 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmInterlock OBJECT IDENTIFIER ::= { pdmMIBObjects 13 }  
+
+pdmInterlockTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmInterlockEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "The Interlock table contains one row for each interlock
+      sensor."
+    ::= { pdmInterlock 1  }
+    
+pdmInterlockEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmInterlockEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmInterlockIndex }
+    ::= { pdmInterlockTable  1 }
+
+PdmInterlockEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmInterlockIndex   Integer32,
+      pdmInterlockDescription    PdmLocalizedStringTC,
+      pdmInterlockStatus    PdmInterlockStatusTC
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+    -- table at { pdmInterlock 1 }
+pdmInterlockIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmInterlockEntry 1 }
+
+pdmInterlockDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Vendor supplied description of the cover or interlock
+      switch.
+      NEC -- (255 bytes) unsupported."
+    DEFVAL { "" }
+    ::= { pdmInterlockEntry 2 }
+  
+pdmInterlockStatus OBJECT-TYPE
+    SYNTAX PdmInterlockStatusTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Status assessment for the particular interlock switch.
+      NEC -- (4 bytes) unsupported."
+    DEFVAL { okClosed }
+    ::= { pdmInterlockEntry 3 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmLocaleCharset OBJECT IDENTIFIER ::= { pdmMIBObjects 14 }  
+
+pdmLocaleCharsetTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmLocaleCharsetEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "One row per IANA-registered charset supported in one of the
+      local or remote management interfaces of the device."
+    ::= { pdmLocaleCharset 1  }
+    
+pdmLocaleCharsetEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmLocaleCharsetEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmLocaleCharsetIndex }
+    ::= { pdmLocaleCharsetTable  1 }
+
+PdmLocaleCharsetEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmLocaleCharsetIndex   Integer32,
+      pdmLocaleCharsetEnum    Integer32
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmLocaleCharsetEnumEWS OBJECT-TYPE
+    SYNTAX Integer32 ( 1 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The default charset (RFC 2978 or successor) number from the
+      IANA Charset MIB (originally RFC 3808) for all localized
+      text strings in the embedded web server (EWS) human-readable
+      management interface. The value of this property shall be
+      one of the values of Enum in the LocaleCharset table.
+      NEC -- (4 bytes) Always get 4 (Latin1).  Set is unsupported."
+    DEFVAL { 4 }
+    ::= { pdmLocaleCharset 2 }
+  
+    -- table at { pdmLocaleCharset 1 }
+pdmLocaleCharsetIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmLocaleCharsetEntry 1 }
+
+pdmLocaleCharsetEnum OBJECT-TYPE
+    SYNTAX Integer32 ( 1 .. 2147483647 )  -- Integer
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "A supported charset (RFC 2978 or successor) number from the
+      IANA Charset MIB (originally RFC 3808) for localized text
+      string properties in this device. See IANA Charset MIB at:
+      http://www.iana.org/assignments/ianacharset-mib The label
+      for a charset number has a 'cs' prefix and is identified as
+      the 'MIBenum' value. See IANA Charset Registry at:
+      http://www.iana.org/assignments/character-sets Examples: '1'
+      (other), '2' (unknown)', '4' (csISOLatin1), and '106'
+      (csUTF8).
+      NEC -- (4 bytes) Always get 4 (Latin1).  Set is unsupported."
+    DEFVAL { 4 }
+    ::= { pdmLocaleCharsetEntry 2 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmLocaleLanguage OBJECT IDENTIFIER ::= { pdmMIBObjects 15 }  
+
+pdmLocaleLanguageTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmLocaleLanguageEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "One row per natural language supported in one of the local
+      or remote management interfaces of the device."
+    ::= { pdmLocaleLanguage 1  }
+    
+pdmLocaleLanguageEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmLocaleLanguageEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmLocaleLanguageIndex }
+    ::= { pdmLocaleLanguageTable  1 }
+
+PdmLocaleLanguageEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmLocaleLanguageIndex   Integer32,
+      pdmLocaleLanguageTag    SnmpAdminString
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmLocaleLanguageTagEWS OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 63 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The default natural language tag (RFC 4646) for all
+      localized text strings in the embedded web server (EWS)
+      human-readable remote management interface over any version
+      of HTTP. The value of this property shall be one of the
+      values of Tag in the LocaleLanguage table. If the value of
+      this property is an empty string, then the language in this
+      interface shall be US English (en-US).
+      NEC -- (63 bytes) Always get 'en'.  Set unsupported."
+    DEFVAL { "en-US" }
+    ::= { pdmLocaleLanguage 2 }
+  
+pdmLocaleLanguageTagOSD OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 63 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The current natural language tag (RFC 4646) for all
+      localized text strings in the on-screen display (OSD)
+      human-readable local management interface. The value of this
+      property shall be one of the values of Tag in the
+      LocaleLanguage table. If the value of this property is an
+      empty string, then the language in this interface shall be
+      US English (en-US).
+      NEC -- (63 byte) Always get null.  Set unsupported."
+    DEFVAL { "en-US" }
+    ::= { pdmLocaleLanguage 3 }
+  
+pdmLocaleLanguageTagWSM OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 63 ))  -- String
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "The current natural language tag (RFC 4646) for all
+      localized text strings in the Web Services Management (WSM)
+      machine-readable remote management interface over any
+      version of SOAP. The value of this property shall be one of
+      the values of Tag in the LocaleLanguage table. If the value
+      of this property is an empty string, then the language in
+      this interface shall be US English (en-US).
+      NEC -- (63 byte) Always get null.  Set unsupported."
+    DEFVAL { "en-US" }
+    ::= { pdmLocaleLanguage 4 }
+  
+    -- table at { pdmLocaleLanguage 1 }
+pdmLocaleLanguageIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmLocaleLanguageEntry 1 }
+
+pdmLocaleLanguageTag OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 63 ))  -- String
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "A supported natural language tag (RFC 4646 or successor) for
+      localized text string properties in this device. This
+      natural language tag shall be specified as a visible
+      US-ASCII string (ANSI X.3-1968) and shall not contain any
+      spaces or control characters (0x00 to 0x1F inclusive and
+      0x7F). A well-formed natural language tag is composed of an
+      ISO 639 (two or three letter) subtag for language, an
+      optional ISO 639-3 (three letter) subtag for extended
+      language, an optional ISO 15924 (four letter) subtag for
+      script, an optional ISO 3166 (two letter) or UN M.49 (three
+      digit) subtag for country or region, and any other optional
+      subtags, each separated by a hyphen. Note: The source ISO
+      standards have conventions for case normalization for the
+      various subtags. Canonical language tags should follow these
+      conventions (see examples below). Examples: 'en-US' (US
+      English), 'sr-Latn-RS' (Serbian in Latin script as spoken in
+      Serbia), and 'zh-cmn' (Mandarin Chinese). If the value of
+      this property is an empty string, then the language shall be
+      US English (en).
+      NEC -- (63 bytes) Always get null."
+    DEFVAL { "en-US" }
+    ::= { pdmLocaleLanguageEntry 2 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmAudio OBJECT IDENTIFIER ::= { pdmMIBObjects 16 }  
+
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmAudioDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Describes the audio controls for the device. This property
+      provides only the basic audio controls.
+      NEC -- (255 bytes)  Always get null."
+    DEFVAL { "" }
+    ::= { pdmAudio 1 }
+  
+pdmAudioVolume OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 1000 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property sets the volume level. 
+      NEC -- (4 bytes)  Get or set current audio volume (0-100)."
+    DEFVAL { 0 }
+    ::= { pdmAudio 2 }
+  
+pdmAudioMute OBJECT-TYPE
+    SYNTAX PdmAudioMuteTC  -- Enum
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property will temporarily reduce the volume to zero
+      when set to muted.
+      NEC -- (4 bytes)  Get or set Current Audio Mute:  1 (mute),
+      2 (notMuted)."
+    DEFVAL { notMuted }
+    ::= { pdmAudio 3 }
+  
+pdmAudioTreble OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 1000 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property sets the treble level.
+      NEC -- (4 bytes) Get or set current audio treble (0-100)."
+    DEFVAL { 0 }
+    ::= { pdmAudio 4 }
+  
+pdmAudioBass OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 1000 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property sets the bass level.
+      NEC -- (4 bytes)  Get or set current audio bass (0-100)."
+    DEFVAL { 0 }
+    ::= { pdmAudio 5 }
+  
+pdmAudioBalance OBJECT-TYPE
+    SYNTAX Integer32 ( -1000 .. 1000 )  -- Integer
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "This property sets the balance to the left with a negative
+      number and towards the right with a positive number.
+      NEC -- (4 bytes) Get or set current audio balance (0-100)."
+    DEFVAL { 0 }
+    ::= { pdmAudio 6 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmButton OBJECT IDENTIFIER ::= { pdmMIBObjects 17 }  
+
+pdmButtonTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmButtonEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "One button per row. If a button or group of buttons cannot
+      be enabled or disabled by the management agent, then it
+      shall not be represented in this table."
+    ::= { pdmButton 1  }
+    
+pdmButtonEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmButtonEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmButtonIndex }
+    ::= { pdmButtonTable  1 }
+
+PdmButtonEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmButtonIndex   Integer32,
+      pdmButtonDescription    PdmLocalizedStringTC,
+      pdmButtonEnabled    TruthValue
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+    -- table at { pdmButton 1 }
+pdmButtonIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmButtonEntry 1 }
+
+pdmButtonDescription OBJECT-TYPE
+    SYNTAX PdmLocalizedStringTC  -- StringConstant
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "Vendor-supplied localized description string for the button.
+      NEC -- (255 bytes)  Get 'Key/IR Lock'"
+    DEFVAL { "" }
+    ::= { pdmButtonEntry 2 }
+  
+pdmButtonEnabled OBJECT-TYPE
+    SYNTAX TruthValue  -- Boolean, import from SMIv2-TC
+    MAX-ACCESS read-write
+    STATUS current
+    DESCRIPTION 
+      "If this variable is true (default), then the associated
+      button functions as specified by the manufacturer. If this
+      variable is false, then the button has no impact on the
+      operation of the device; that is, the user cannot use the
+      button to change the state of the device. If buttons can be
+      individually disabled in the device, then this property
+      should be implemented.
+      NEC -- (4 bytes) Get or Set the control panel Key Lock and IR
+      Control status:  1 (UNLOCK), 2 (LOCK)."
+    DEFVAL { true }
+    ::= { pdmButtonEntry 3 }
+  
+    -- Processed by tables13.xsl at . . . 
+
+pdmAlert OBJECT IDENTIFIER ::= { pdmMIBObjects 18 }  
+
+pdmAlertTable OBJECT-TYPE -- Table header
+    SYNTAX  SEQUENCE OF  PdmAlertEntry -- syntax has cap prefix
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION 
+      "The alert table is an ordered list of alarm conditions or
+      events. New alert entries are added to the end of the table.
+      Once an alert entry is added to the table, its contents do
+      not change. That is, the table itself changes, gaining or
+      losing entries, but the entries themselves never change so
+      long as they are present in the table. The maximum length of
+      the alert table is implementation dependent. The algorithm
+      used by the management agent to age entries out of the table
+      is implementation dependent."
+    ::= { pdmAlert 1  }
+    
+pdmAlertEntry  OBJECT-TYPE -- Table row
+    SYNTAX PdmAlertEntry 
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION ""
+    INDEX    { pdmAlertIndex }
+    ::= { pdmAlertTable  1 }
+
+PdmAlertEntry -- Columns in table row
+    ::= SEQUENCE { 
+      pdmAlertIndex   Integer32,
+      pdmAlertGroupType    SnmpAdminString,
+      pdmAlertGroupId    SnmpAdminString,
+      pdmAlertCode    Integer32,
+      pdmAlertDescription    SnmpAdminString,
+      pdmAlertSeverityLevel    PdmAlertSeverityLevelTC,
+      pdmAlertTrainingLevel    PdmAlertTrainingLevelTC,
+      pdmAlertDateTime    PdmDateTimeTC,
+      pdmAlertPowerOnCount    Counter32,
+      pdmAlertSysUptime    TimeTicks  -- SNMP TimeTicks
+    }    
+  
+    -- Processed by props26.xsl at   .  .  .  
+
+pdmAlertCriticalAlertsCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The number of critical alerts that have been posted in this
+      device. This counter is never reset in normal operation, so
+      the value increases over time and can be used by management
+      applications to detect when new critical alerts appear.
+      NEC -- (4 bytes) Always get 0."
+    ::= { pdmAlert 2 }
+  
+pdmAlertAllAlertsCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The total number of alerts that have been posted in this
+      device, including critical, warning, and other alerts. This
+      counter is never reset in normal operation, so the value
+      increases over time and can be used by management
+      applications to detect when new alerts appear.
+      NEC -- (4 bytes) Always get 0."
+    ::= { pdmAlert 3 }
+  
+    -- table at { pdmAlert 1 }
+pdmAlertIndex OBJECT-TYPE
+    SYNTAX     Integer32 (1..2147483647)  -- Automatic index variable
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+      "A unique value used by the device to identify this entry. 
+      Values are expected to remain stable across successive power
+      cycles."
+    ::= { pdmAlertEntry 1 }
+
+pdmAlertGroupType OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "A string denoting the name of the group that caused the
+      alarm condition, such as 'Lamp' or 'Fan' or 'ThermalSensor'
+      and so forth. It is possible that some conditions may not be
+      directly attributable to a specific group. In that case, the
+      value of this property shall be 'General'.
+      NEC -- (255 bytes)  Get the error status when is has an error:
+      7X Power: Power supply is abnormal, 8X FAN: FAN is abnormal,
+      9X INVERTER: Inverter is abnormal, AX TEMPERATURE: Temperature
+      is abnormal, BX SIGNAL: Signal changed, EX: System Error, 
+      DX: Other error.  If is has two or more errors, you get 
+      'General'."
+    DEFVAL { "Name of group that caused alert" }
+    ::= { pdmAlertEntry 2 }
+  
+pdmAlertGroupId OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 0 .. 255 ))  -- String
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "An identifier denoting which item within the specified
+      GroupName caused the condition. If the condition cannot be
+      attributed to a single item within the group, then the value
+      of this property shall be zero or null; otherwise the
+      property shall not be zero or null.
+      NEC -- (255 bytes)  Get the error status:
+      Power_0: Standby-power +3.3V abnormality,
+      Power_1: Standby-power _5V abnormality,
+      Power_8: Inverter/Option +24V abnormality,
+      Fan_0: Cooling fan-1 abnormality,
+      Fan_1: Cooling fan-2 abnormality,
+      Fan_2: Cooling fan-3 abnormality,
+      Inverter_0: Inverter abnormality,
+      Backlight_1: LED backlight abnormality,
+      Temperature_0: Temperature abnormality -- shutdown,
+      Temperature_1: Temperature abnormality -- half brightness,
+      Temperature_2: Sensor reached the user setting temperature,
+      Signal_0: No Signal,
+      Errlog_0: PROOF OF PLAY buffer reduce,
+      Syserr_0: System error."
+    DEFVAL { "0" }
+    ::= { pdmAlertEntry 3 }
+  
+pdmAlertCode OBJECT-TYPE
+    SYNTAX Integer32 ( 0 .. 2147483647 )  -- Integer
+    UNITS "n/a"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The integer alert code assigned to this particular
+      condition. There is a registry of codes that correspond to
+      specific conditions in the XXXX TBD.,
+      NEC -- (4 bytes) Get the error status:
+      70h: Standby-power +3.3V abnormality,
+      71h: Standby-power +5V abnormality,
+      72h: Panel-power +12V abnormality,
+      78h: Inverter/Option power abnormality,
+      80h: Cooling fan-1 abnormality,
+      81h: Cooling fan-2 abnormality,
+      82h: Cooling fan-3 abnormality,
+      91h: LED Backlight abnormality,
+      A0h: Temperature abnormality -- shutdown,
+      A1h: Temperature abnormality -- half brightness,
+      A2h: Sensor reached user setting temperature,
+      B0h: No Signal,
+      D0h: PROOF OF PLAY buffer reduce,
+      E0h: System Error"
+    DEFVAL { ''H }
+    ::= { pdmAlertEntry 4 }
+  
+pdmAlertDescription OBJECT-TYPE
+    SYNTAX SnmpAdminString (SIZE( 1 .. 255 ))  -- String
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "The standard text description of this condition. Alert text
+      descriptions correspond to registered alert codes and are
+      maintained in the same registry.
+      NEC -- (255 bytes) Always return spaces."
+    DEFVAL { "Standard text description of the alert." }
+    ::= { pdmAlertEntry 5 }
+  
+pdmAlertSeverityLevel OBJECT-TYPE
+    SYNTAX PdmAlertSeverityLevelTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "An evaluation of the severity of the alert condition. A
+      critical alert compromises the correct operation of the
+      device. When a critical alert is outstanding, the device
+      cannot be operated normally. Any other alert condition is a
+      warning.
+      NEC -- (4 byte) Always get 4 (warning)"
+    DEFVAL { warning }
+    ::= { pdmAlertEntry 6 }
+  
+pdmAlertTrainingLevel OBJECT-TYPE
+    SYNTAX PdmAlertTrainingLevelTC  -- Enum
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "An indication of the degree of sophistication required to
+      repair the condition that caused the alert. Different
+      devices may require different levels of training to fix the
+      same condition, depending on the physical layout of the
+      device.
+      NEC -- (4 bytes) Always get 2 (unknown)"
+    DEFVAL { unknown }
+    ::= { pdmAlertEntry 7 }
+  
+pdmAlertDateTime OBJECT-TYPE
+    SYNTAX PdmDateTimeTC  --  absolute DateTime(SIZE( 19..25 ))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "This property contains the date and time that the alert was
+      first signalled within the device, if the device knows the
+      date and time. \n \n The string shall be in an XML standard
+      datetime format. The following formats are acceptable. Which
+      format a device uses depends on the device's awareness of
+      its timezone. \n 2007-07-26T17:05:12 for time probably in
+      the local tz\n 2007-07-26T17:05:12Z for GMT (UTC)\n
+      2007-07-26T17:05:12-05:00 for local time in a specific tz\n
+      NEC -- (25 bytes) Always get '1980-01-01T00:00:00'"
+    DEFVAL { "1980-01-01T00:00:00" }
+    ::= { pdmAlertEntry 8 }
+  
+pdmAlertPowerOnCount OBJECT-TYPE
+    SYNTAX Counter32  -- Counter
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "This property is a snapshot of the value of the system
+      PowerOnCount property from the General group, taken at the
+      time that the alert condition is signalled.
+      NEC -- (4 bytes) Always get 0."
+    ::= { pdmAlertEntry 9 }
+  
+pdmAlertSysUptime OBJECT-TYPE
+    SYNTAX TimeTicks  -- SNMP TimeTicks
+    UNITS "hundredths of a second"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION 
+      "This property is a snapshot of the value of the SNMP
+      sysUptime property, or an equivalent property, taken at the
+      time that the alert condition is signalled.
+      NEC -- (4 bytes) Always get 0."
+    DEFVAL { ''H }
+    ::= { pdmAlertEntry 10 }
+  
+END
